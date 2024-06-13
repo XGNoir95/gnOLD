@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 const cors = require('cors')
 
 
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 //mongodb-configuration
 //user-pass-20220104046
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://game_nova_mern:20220104046@atlascluster.xjwewls.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -31,6 +31,61 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    // create a collection of documents
+    const gameCollections = client.db("GameInventory").collection("games");
+
+    // inserting a game to the db: post method
+
+    app.post("/upload-game", async(req,res) =>{
+      const data = req.body;
+      const result = await gameCollections.insertOne(data);
+      res.send(result);
+    })
+
+    //get all games from database
+    // app.get("/all-games",async(req,res)=>{
+    //   const games =  gameCollections.find();
+    //   const result = await games.toArray();
+    //   res.send(result);
+    // })
+
+    //update a game data: patch or update methods
+    app.patch("/game/:id", async(req,res)=>{
+      const id = req.params.id;
+      //console.log(id)
+      const updateGameData = req.body;
+      const filter = {_id: new ObjectId(id)};
+      const options = {upsert: true};
+
+      const updateDoc = {
+        $set:{
+          ...updateGameData
+        }
+      }
+      //update
+      const result = await gameCollections.updateOne(filter, updateDoc, options);
+      res.send(result);
+    })
+
+    //delete a game data
+    app.delete("/game/:id", async(req,res)=>{
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const result = await gameCollections.deleteOne(filter);
+      res.send(result);
+    })
+
+    //find by category
+    app.get("/all-games", async(req,res)=>{
+      let query = {};
+      if(req.query?.category){
+        query = {category: req.query.category}
+      }
+      const result = await gameCollections.find(query).toArray();
+      res.send(result);
+    })
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
