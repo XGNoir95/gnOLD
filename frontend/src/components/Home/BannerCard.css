@@ -1,0 +1,53 @@
+.banner-container {
+  height: 60vh; /* Default height */
+}
+
+.swiper {
+  width: 100%; /* Default width */
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .banner-container {
+    height: 70vh; /* Increase height on medium screens */
+  }
+
+  .swiper {
+    width: 100%; /* Keep width at 100% for medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner-container {
+    height: 80vh; /* Increase height on large screens */
+  }
+
+  .swiper {
+    width: 100%; /* Keep width at 100% for large screens */
+  }
+}
+
+@media (min-width: 1280px) {
+  .banner-container {
+    height: 90vh; /* Set height on extra-large screens */
+  }
+
+  .swiper {
+    width: 100%; /* Keep width at 100% for extra-large screens */
+  }
+}
