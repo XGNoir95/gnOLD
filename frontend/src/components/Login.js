@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Login.css';
 
 // Use the provided API URL as link
-const API_URL = 'https://wandehubapi.vercel.app/api/users';
+const API_URL = 'https://wanderhubapi.vercel.app/api/users';
 
 // Set Axios default withCredentials to true
 axios.defaults.withCredentials = true;
