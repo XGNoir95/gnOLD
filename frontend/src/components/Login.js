@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 
-// Use the provided API URL
+// Use the provided API URL as link
 const API_URL = 'https://wandehubapi.vercel.app/api/users';
 
 // Set Axios default withCredentials to true
