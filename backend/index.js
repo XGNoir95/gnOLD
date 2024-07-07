@@ -13,7 +13,13 @@ console.log(`MONGO_URI: ${process.env.MONGO_URI}`); // Log MONGO_URI
 
 connectDB();
 
-app.use(cors());
+app.use(cors(
+    {
+      origin:["https://octa-byte.vercel.app"],
+      methods: ["POST","GET"],
+      credentials: true
+    }
+));
 app.use(express.json());
 
 // Root route
