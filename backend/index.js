@@ -15,7 +15,7 @@ connectDB();
 
 app.use(cors(
     {
-      origin:["https://octa-byte.vercel.app"],
+      origin:["https://wanderhub-one.vercel.app"],
       methods: ["POST","GET"],
       credentials: true
     }
