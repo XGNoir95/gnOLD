@@ -13,7 +13,9 @@ const AllGame = () => {
 
   const getData = async () => {
     try {
-      const response = await Axios.get("http://localhost:1000/api/v1/sort-games");
+      const response = await Axios.get("https://gn-old-api.vercel.app/api/v1/sort-games", {
+        withCredentials: true
+      });
       console.log(response.data.games); // Log the response to the console
       setData(response.data);
     } catch (error) {
