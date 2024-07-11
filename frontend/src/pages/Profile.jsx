@@ -21,8 +21,8 @@ const Profile = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:1000/api/v1/get-user-information',
-          { headers }
+          'https://gn-old-api.vercel.app/api/v1/get-user-information',
+          { headers, withCredentials: true }
         );
         console.log('Fetched Profile data:', response.data);
         setProfile(response.data);
@@ -33,8 +33,9 @@ const Profile = () => {
           if (refreshToken) {
             try {
               const refreshResponse = await axios.post(
-                'http://localhost:1000/api/v1/token',
-                { token: refreshToken }
+                'https://gn-old-api.vercel.app/api/v1/token',
+                { token: refreshToken },
+                { withCredentials: true }
               );
               const newAccessToken = refreshResponse.data.accessToken;
               localStorage.setItem('token', newAccessToken);
@@ -43,12 +44,13 @@ const Profile = () => {
 
               // Retry fetching the profile data with the new token
               const retryResponse = await axios.get(
-                'http://localhost:1000/api/v1/get-user-information',
+                'https://gn-old-api.vercel.app/api/v1/get-user-information',
                 {
                   headers: {
                     id: localStorage.getItem('id'),
                     authorization: `Bearer ${newAccessToken}`,
                   },
+                  withCredentials: true
                 }
               );
               setProfile(retryResponse.data);
