@@ -25,7 +25,7 @@ const SignUp = () => {
       if (values.username === "" || values.email === "" || values.password === "" || values.address === "") {
         alert("All fields are required");
       } else {
-        const response = await axios.post("http://localhost:1000/api/v1/sign-up", values);
+        const response = await axios.post("https://gn-old-api.vercel.app/api/v1/sign-up", values, { withCredentials: true });
         console.log("Signup Successful:", response.data);
         navigate("/LogIn"); // Redirect after successful signup
       }
@@ -48,7 +48,7 @@ const SignUp = () => {
       backgroundPosition: 'center',
     }}>
       <div className="bg-[#1e0b37] rounded-lg px-8 py-5 w-full md:w-3/6 lg:w-2/6">
-      <p className="text-amber-500 text-2xl font-bold text-center mb-4">Sign Up:</p>
+        <p className="text-amber-500 text-2xl font-bold text-center mb-4">Sign Up:</p>
         
         <div className="mt-4">
           <div>
