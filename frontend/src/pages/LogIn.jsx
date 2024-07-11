@@ -26,7 +26,9 @@ const LogIn = () => {
       if (values.email === "" || values.password === "") {
         alert("All fields are required");
       } else {
-        const response = await axios.post("http://localhost:1000/api/v1/sign-in", values);
+        const response = await axios.post("https://gn-old-api.vercel.app/api/v1/sign-in", values, {
+          withCredentials: true
+        });
         console.log("Login response:", response.data);
 
         dispatch(authActions.login());
