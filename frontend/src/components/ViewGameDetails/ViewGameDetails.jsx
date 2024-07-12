@@ -69,7 +69,7 @@ const ViewGameDetails = () => {
         return <div className="px-12 py-8 bg-zinc-900 text-white">No game data found.</div>;
     }
 
-    return (
+return (
         <div 
             className="min-h-screen bg-cover bg-center text-white px-10 py-8" 
             style={{ backgroundImage: `url('/bg2.jpg')` }}
@@ -77,14 +77,17 @@ const ViewGameDetails = () => {
             <div className='px-12 py-8 flex gap-8'>
                 {/* Image Container */}
                 <div 
-                    className="relative w-full max-w-[800px] max-h-[500px] mt-36"
-                >
-                    <img 
-                        src={data.url} 
-                        alt="Game" 
-                        className='object-cover w-full h-full rounded cursor-pointer' 
-                        onClick={openModal}
-                    />
+            className="min-h-screen bg-cover bg-center text-white px-10 py-8" 
+            style={{ backgroundImage: `url('/bg.jpg')` }}
+        >
+                    <div className='relative w-full max-w-[800px] max-h-[500px]  mt-36'>
+                        <img 
+                            src={data.url} 
+                            alt="Game" 
+                            className='object-cover w-full h-full rounded cursor-pointer' 
+                            onClick={openModal}
+                        />
+                    </div>
                 </div>
                 {/* Details Section */}
                 <div className='p-4 w-3/6'>
