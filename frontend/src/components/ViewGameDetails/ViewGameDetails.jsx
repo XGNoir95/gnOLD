@@ -32,7 +32,7 @@ const EditGameModal = ({ isOpen, onClose, gameData, onUpdate }) => {
         };
 
         try {
-            const response = await Axios.put("http://localhost:1000/api/v1/update-game", formData, { headers });
+            const response = await Axios.put("https://gn-old.vercel.app/api/v1/update-game", formData, { headers });
             alert(response.data.message);
             window.location.reload(); 
             onUpdate(); 
