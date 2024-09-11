@@ -18,7 +18,7 @@ const Profile = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:1000/api/v1/get-user-information',
+          'https://gn-old.vercel.app/api/v1/get-user-information',
           { headers }
         );
 
@@ -30,7 +30,7 @@ const Profile = () => {
           if (refreshToken) {
             try {
               const refreshResponse = await axios.post(
-                'http://localhost:1000/api/v1/token',
+                'https://gn-old.vercel.app/api/v1/token',
                 { token: refreshToken }
               );
 
@@ -40,7 +40,7 @@ const Profile = () => {
               console.log('New JWT Token:', newAccessToken);
 
               const retryResponse = await axios.get(
-                'http://localhost:1000/api/v1/get-user-information',
+                'https://gn-old.vercel.app/api/v1/get-user-information',
                 {
                   headers: {
                     id: localStorage.getItem('id'),
