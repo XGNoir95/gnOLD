@@ -132,9 +132,11 @@ const AllOrders = () => {
                     onClick={() => setOptions(i)}
                   >
                     {items.status === "Order placed" ? (
-                      <div className="text-yellow-500">{items.status}</div>
+                      <div className="text-pink-500">{items.status}</div>
                     ) : items.status === "Canceled" ? (
                       <div className="text-red-500">{items.status}</div>
+                    ) : items.status === "Out for delivery" ? (
+                      <div className="text-amber-500">{items.status}</div>
                     ) : (
                       <div className="text-green-500">{items.status}</div>
                     )}
