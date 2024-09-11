@@ -8,11 +8,11 @@ const RecentlyAdd = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        // const response = await axios.get("https://game-nova-api.vercel.app/api/v1/get-recent-games", {
-        //   withCredentials: true
-        // });
+         const response = await axios.get("https://gn-old.vercel.app/api/v1/get-recent-games", {
+           withCredentials: true
+        });
 
-        const response = await axios.get("http://localhost:1000/api/v1/get-recent-games");
+        //const response = await axios.get("http://localhost:1000/api/v1/get-recent-games");
         console.log(response.data.data);
         setData(response.data.data);
       } catch (error) {
