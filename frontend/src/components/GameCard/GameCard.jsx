@@ -12,7 +12,7 @@ const GameCard = ({ data, favourite, refreshFavourites }) => {
   const handleRemoveGame = async () => {
     try {
       const response = await Axios.put(
-        "http://localhost:1000/api/v1/remove-game-from-favourite",
+        "https://gn-old.vercel.app/api/v1/remove-game-from-favourite",
         {}, { headers }
       );
       alert(response.data.message);
