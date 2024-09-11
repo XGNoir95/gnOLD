@@ -19,7 +19,7 @@ const Settings = () => {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        "http://localhost:1000/api/v1/get-user-information",
+        "https://gn-old.vercel.app/api/v1/get-user-information",
         { headers }
       );
       setProfileData(response.data);
@@ -35,7 +35,7 @@ const Settings = () => {
 
   const submitProfile = async () => {
     const response = await axios.put(
-      "http://localhost:1000/api/v1/update-profile",
+      "https://gn-old.vercel.app/api/v1/update-profile",
       Value,
       { headers }
     );
