@@ -21,7 +21,7 @@ const AllOrders = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/get-all-orders",
+          "https://gn-old.vercel.app/api/v1/get-all-orders",
           { headers }
         );
         setAllOrders(response.data.data);
