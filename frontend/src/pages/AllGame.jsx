@@ -15,11 +15,11 @@ const AllGame = () => {
     try {
 
       
-      // const response = await Axios.get("https://game-nova-api.vercel.app/api/v1/sort-games", {
-      //   withCredentials: true
-      // });
+      const response = await Axios.get("https://gn-old.vercel.app/api/v1/sort-games", {
+         withCredentials: true
+      });
 
-      const response = await Axios.get("http://localhost:1000/api/v1/sort-games");
+      //const response = await Axios.get("http://localhost:1000/api/v1/sort-games");
       console.log(response.data.games); 
       setData(response.data);
     } catch (error) {
