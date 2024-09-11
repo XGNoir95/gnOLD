@@ -48,7 +48,7 @@ const AllOrders = () => {
     try {
       const id = allOrders[i]._id;
       const response = await axios.put(
-        `https://gn-old.vercel.app/api/v1/update-status/${id}`,
+        `http://localhost:1000/api/v1/update-status/${id}`,
         values,
         { headers }
       );
@@ -75,12 +75,11 @@ const AllOrders = () => {
   return (
     <>
       <div className="bg-[#1e0b37] px-4 md:px-8 lg:px-12 py-8 text-zinc-100">
-      <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-amber-500 mb-8">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-amber-500 mb-8">
           All Orders
         </h1>
-
         <div className="text-base md:text-lg font-semibold mt-4 mb-7 bg-purple-900 w-full rounded py-2 px-2 md:px-4 flex flex-col md:flex-row gap-2">
-        <div className="flex-[1] md:w-[5%] text-left">
+          <div className="flex-[1] md:w-[5%] text-left">
             <h1>Sr.</h1>
           </div>
           <div className="flex-[2] md:w-[25%] text-left">
@@ -99,21 +98,20 @@ const AllOrders = () => {
             <h1>User Info</h1>
           </div>
         </div>
-
         {allOrders.length > 0 ? (
           allOrders.map((items, i) => (
             <div
               className="mb-2 w-full text-base md:text-lg rounded py-2 px-2 md:px-4 flex flex-col md:flex-row gap-2 hover:bg-purple-900 hover:cursor-pointer"
               key={i}
             >
-              <div className="flex-[1] md:w-[5%] text-left">
-                <h1>{i + 1}</h1>
+              <div className="w-[3%]">
+                <h1 className="text-center">{i + 1}</h1>
               </div>
-              <div className="flex-[2] md:w-[25%] text-left">
+              <div className="w-[22%]">
                 {items.game ? (
                   <Link
                     to={`/view-game-details/${items.game._id}`}
-                    className="hover:text-amber-500 font-semibold"
+                    className="hover:text-amber-500"
                   >
                     {items.game.title}
                   </Link>
@@ -121,13 +119,13 @@ const AllOrders = () => {
                   <span>Game information not available</span>
                 )}
               </div>
-              <div className="flex-[4] md:w-[45%] text-left">
+              <div className="w-0 md:w-[45%] hidden md:block">
                 <h1>{items.game?.desc?.slice(0, 50) || "No Description"}</h1>
               </div>
-              <div className="flex-[1] md:w-[10%] text-left">
+              <div className="w-[17%] md:w-[9%]">
                 <h1>${items.game?.price || "0.00"}</h1>
               </div>
-              <div className="flex-[1] md:w-[10%] text-left">
+              <div className="w-[30%] md:w-[16%]">
                 <h1 className="font-semibold">
                   <button
                     className="hover:scale-105 transition-all duration-300"
@@ -137,8 +135,6 @@ const AllOrders = () => {
                       <div className="text-yellow-500">{items.status}</div>
                     ) : items.status === "Canceled" ? (
                       <div className="text-red-500">{items.status}</div>
-                    ) : items.status === "Out for delivery" ? (
-                      <div className="text-amber-500">{items.status}</div>
                     ) : (
                       <div className="text-green-500">{items.status}</div>
                     )}
@@ -171,9 +167,9 @@ const AllOrders = () => {
                   </div>
                 </h1>
               </div>
-              <div className="flex-[1] md:w-[5%] flex items-center justify-center">
+              <div className="w-[10%] md:w-[5%]">
                 <button
-                  className="text-lg font-semibold text-amber-500"
+                  className="text-xl hover:text-orange-500"
                   onClick={() => {
                     setuserDiv("fixed");
                     setuserDivData(items.user);
@@ -185,7 +181,7 @@ const AllOrders = () => {
             </div>
           ))
         ) : (
-          <div className="h-[100%] flex items-center justify-center text-2xl text-amber-500">
+          <div className="h-[100%] flex items-center justify-center text-2xl text-zinc-500">
             No orders found.
           </div>
         )}
