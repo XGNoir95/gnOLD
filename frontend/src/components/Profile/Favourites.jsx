@@ -10,7 +10,7 @@ const Favourites = () => {
   };
   useEffect(() =>{
     const fetch = async () => {
-      const response = await Axios.get("http://localhost:1000/api/v1/get-favourite-games",{ headers });
+      const response = await Axios.get("https://gn-old.vercel.app/api/v1/get-favourite-games",{ headers });
       setFavouriteGames(response.data.data);
     };
     fetch();
