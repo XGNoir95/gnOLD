@@ -48,7 +48,7 @@ const AllOrders = () => {
     try {
       const id = allOrders[i]._id;
       const response = await axios.put(
-        `http://localhost:1000/api/v1/update-status/${id}`,
+        `https://gn-old.vercel.app/api/v1/update-status/${id}`,
         values,
         { headers }
       );
@@ -105,9 +105,9 @@ const AllOrders = () => {
               key={i}
             >
               <div className="w-[3%]">
-                <h1 className="text-center">{i + 1}</h1>
+                <h1>{i + 1}</h1>
               </div>
-              <div className="w-[22%]">
+              <div className="flex-[2] md:w-[25%] text-left">
                 {items.game ? (
                   <Link
                     to={`/view-game-details/${items.game._id}`}
