@@ -17,7 +17,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await Axios.get('http://localhost:1000/api/v1/get-user-cart', { headers });
+        const response = await Axios.get('https://gn-old.vercel.app/api/v1/get-user-cart', { headers });
         setCart(response.data.data);
       } catch (error) {
         console.error('Error fetching cart:', error);
@@ -28,7 +28,7 @@ const Cart = () => {
 
   const deleteItem = async (gameId) => {
     try {
-      const response = await Axios.put(`http://localhost:1000/api/v1/remove-game-from-cart/${gameId}`, {}, { headers });
+      const response = await Axios.put(`https://gn-old.vercel.app/api/v1/remove-game-from-cart/${gameId}`, {}, { headers });
       setCart(Cart.filter((item) => item._id !== gameId));
       alert(response.data.message);
     } catch (error) {
@@ -45,7 +45,7 @@ const Cart = () => {
 
   const placeOrder = async () => {
     try {
-      const response = await Axios.post('http://localhost:1000/api/v1/place-order', { order: Cart }, { headers });
+      const response = await Axios.post('https://gn-old.vercel.app/api/v1/place-order', { order: Cart }, { headers });
       alert(response.data.message);
       navigate('/profile/orderHistory');
     } catch (error) {
