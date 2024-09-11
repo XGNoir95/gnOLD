@@ -14,7 +14,7 @@ const Order = require("./routes/order");
 
 app.use(cors({
      origin: ["https://gn-old-fend.vercel.app"],
-     methods: ["POST", "GET"],
+     methods: ["POST", "GET", "PUT", "DELETE"],
      credentials: true
 }));
 
