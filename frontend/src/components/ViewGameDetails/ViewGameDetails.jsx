@@ -167,13 +167,13 @@ const ViewGameDetails = () => {
             };
 
             try {
-                const response = await Axios.get(`http://localhost:1000/api/v1/get-game-by-id/${id}`, { headers });
+                const response = await Axios.get(`https://gn-old.vercel.app/api/v1/get-game-by-id/${id}`, { headers });
                 setData(response.data.data);
             } 
-           // catch (error) {
-             //   console.error('Error fetching game data:', error);
-             //   setError('Error fetching game data');
-           // } 
+            catch (error) {
+                console.error('Error fetching game data:', error);
+                setError('Error fetching game data');
+           } 
             finally {
                 setLoading(false);
             }
@@ -189,7 +189,7 @@ const ViewGameDetails = () => {
             gameid: id,
         };
         try {
-            const response = await Axios.put("http://localhost:1000/api/v1/add-game-to-favourite", {}, { headers });
+            const response = await Axios.put("https://gn-old.vercel.app/api/v1/add-game-to-favourite", {}, { headers });
             alert(response.data.message);
         } catch (error) {
             console.error('Error adding game to favourites:', error);
@@ -204,7 +204,7 @@ const ViewGameDetails = () => {
             gameid: id,
         };
         try {
-            const response = await Axios.put("http://localhost:1000/api/v1/add-to-cart", {}, { headers });
+            const response = await Axios.put("https://gn-old.vercel.app/api/v1/add-to-cart", {}, { headers });
             alert(response.data.message);
         } catch (error) {
             console.error('Error adding game to cart:', error);
@@ -219,7 +219,7 @@ const ViewGameDetails = () => {
             gameid: id,
         };
         try {
-            const response = await Axios.delete("http://localhost:1000/api/v1/delete-game", { headers });
+            const response = await Axios.delete("https://gn-old.vercel.app/api/v1/delete-game", { headers });
             alert(response.data.message);
             navigate("/all-games");
         } catch (error) {
