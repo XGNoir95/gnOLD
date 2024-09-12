@@ -76,6 +76,28 @@ router.get("/get-all-orders",authenticateToken,async(req,res)=>{
     }
 });
 
+
+router.delete("/delete-order/:id", authenticateToken, async (req, res) => {
+    try {
+      const orderId = req.params.id;
+  
+      // Find the order by ID and delete it
+      const deletedOrder = await Order.findByIdAndDelete(orderId);
+  
+      if (!deletedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      return res.json({
+        status: "Success",
+        message: "Order deleted successfully",
+      });
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      return res.status(500).json({ message: "An error occurred while deleting the order" });
+    }
+  });
+
 //update order--admin
 router.put("/update-status/:id", authenticateToken, async(req,res) =>{
     try{
