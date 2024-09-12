@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../components/Loader/loader";
-import { FaCheck, FaUserLarge } from "react-icons/fa6";
+import { FaCheck, FaUserLarge, FaTrash } from "react-icons/fa6";
 import { IoOpenOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import SeeUserData from "./SeeUserData";
@@ -64,6 +64,25 @@ const AllOrders = () => {
     }
   };
 
+   // Function to delete an order
+   const deleteOrder = async (i) => {
+    try {
+      const id = allOrders[i]._id;
+      const response = await axios.delete(
+        `https://gn-old.vercel.app/api/v1/delete-order/${id}`,
+        { headers }
+      );
+      alert(response.data.message);
+
+      // Remove the deleted order from the state
+      setAllOrders((prevOrders) => prevOrders.filter((_, index) => index !== i));
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      alert("An error occurred while deleting the order.");
+    }
+  };
+
+
   if (loading) {
     return (
       <div className="h-[100%] flex items-center justify-center">
@@ -94,9 +113,14 @@ const AllOrders = () => {
           <div className="flex-[1] md:w-[10%] text-left">
             <h1>Status</h1>
           </div>
-          <div className="flex-[1] md:w-[5%] text-left text-center">
+          <div className="flex-[1] md:w-[5%] text-left text-right">
             <h1>User Info</h1>
           </div>
+
+          <div className="flex-[1] md:w-[5%] text-left text-center">
+            <h1>Action</h1>
+          </div>
+
         </div>
         {allOrders.length > 0 ? (
           allOrders.map((items, i) => (
@@ -107,7 +131,7 @@ const AllOrders = () => {
               <div className="w-[3%]">
                 <h1>{i + 1}</h1>
               </div>
-              <div className="flex-[2] md:w-[25%] text-left">
+              <div className="flex-[2] md:w-[25%] text-center">
                 {items.game ? (
                   <Link
                     to={`/view-game-details/${items.game._id}`}
@@ -120,7 +144,7 @@ const AllOrders = () => {
                 )}
               </div>
               <div className="w-0 md:w-[45%] hidden md:block">
-                <h1>{items.game?.desc?.slice(0, 50) || "No Description"}</h1>
+                <h1>{items.game?.desc?.slice(0, 80) || "No Description"}</h1>
               </div>
               <div className="w-[17%] md:w-[9%]">
                 <h1>${items.game?.price || "0.00"}</h1>
@@ -169,7 +193,7 @@ const AllOrders = () => {
                   </div>
                 </h1>
               </div>
-              <div className="w-[10%] md:w-[5%]">
+              <div className="w-[10%] md:w-[5%] flex justify-left">
                 <button
                   className="text-xl hover:text-orange-500"
                   onClick={() => {
@@ -178,6 +202,16 @@ const AllOrders = () => {
                   }}
                 >
                   <IoOpenOutline />
+                </button>
+              </div>
+
+              <div className="w-[10%] md:w-[5%] text-left">
+                {/* Delete Button */}
+                <button
+                  className="text-xl text-red-500 hover:text-red-700"
+                  onClick={() => deleteOrder(i)} // Call deleteOrder on click
+                >
+                  <FaTrash />
                 </button>
               </div>
             </div>
