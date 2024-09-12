@@ -169,10 +169,12 @@ const ViewGameDetails = () => {
             try {
                 const response = await Axios.get(`http://localhost:1000/api/v1/get-game-by-id/${id}`, { headers });
                 setData(response.data.data);
-            } catch (error) {
-                console.error('Error fetching game data:', error);
-                setError('Error fetching game data');
-            } finally {
+            } 
+           // catch (error) {
+             //   console.error('Error fetching game data:', error);
+             //   setError('Error fetching game data');
+           // } 
+            finally {
                 setLoading(false);
             }
         };
