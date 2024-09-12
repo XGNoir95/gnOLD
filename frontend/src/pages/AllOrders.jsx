@@ -144,7 +144,7 @@ const AllOrders = () => {
                 )}
               </div>
               <div className="w-0 md:w-[45%] hidden md:block">
-                <h1>{items.game?.desc?.slice(0, 80) || "No Description"}</h1>
+                <h1>{items.game?.desc?.slice(0, 60) || "No Description"}</h1>
               </div>
               <div className="w-[17%] md:w-[9%]">
                 <h1>${items.game?.price || "0.00"}</h1>
